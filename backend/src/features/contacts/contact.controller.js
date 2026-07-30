@@ -11,7 +11,7 @@ const getContacts = asyncHandler(async (req, res) => {
 // @desc  Add a new emergency contact
 // @route POST /api/contacts
 const addContact = asyncHandler(async (req, res) => {
-  const { name, phone, relationship, priority } = req.body;
+  const { name, phone, email, relationship, priority } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ message: "Name and phone are required" });
@@ -21,6 +21,7 @@ const addContact = asyncHandler(async (req, res) => {
     user: req.user._id,
     name,
     phone,
+    email,
     relationship,
     priority,
   });
@@ -36,9 +37,10 @@ const updateContact = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Contact not found" });
   }
 
-  const { name, phone, relationship, priority } = req.body;
+  const { name, phone, email, relationship, priority } = req.body;
   if (name !== undefined) contact.name = name;
   if (phone !== undefined) contact.phone = phone;
+  if (email !== undefined) contact.email = email;
   if (relationship !== undefined) contact.relationship = relationship;
   if (priority !== undefined) contact.priority = priority;
 

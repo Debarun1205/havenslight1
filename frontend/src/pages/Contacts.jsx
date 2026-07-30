@@ -103,6 +103,7 @@ export default function Contacts() {
                       <p className="font-medium text-ink">{c.name}</p>
                       <p className="text-xs text-ink-soft">
                         {c.relationship || "Contact"} · <span className="font-mono">{c.phone}</span>
+                        {c.email && <> · {c.email}</>}
                       </p>
                     </div>
                   </div>
@@ -138,6 +139,7 @@ function ContactForm({ initial, onSaved, onCancel, onError }) {
   const [form, setForm] = useState({
     name: initial?.name || "",
     phone: initial?.phone || "",
+    email: initial?.email || "",
     relationship: initial?.relationship || relationships[0],
     priority: initial?.priority ?? 1,
   });
@@ -168,6 +170,9 @@ function ContactForm({ initial, onSaved, onCancel, onError }) {
         </Field>
         <Field label="Phone" htmlFor="phone">
           <Input id="phone" required type="tel" value={form.phone} onChange={set("phone")} placeholder="+91 98765 43210" />
+        </Field>
+        <Field label="Email (optional)" htmlFor="email" hint="Enables real email alerts when SOS is triggered">
+          <Input id="email" type="email" value={form.email} onChange={set("email")} placeholder="name@example.com" />
         </Field>
         <Field label="Relationship" htmlFor="relationship">
           <Select id="relationship" value={form.relationship} onChange={set("relationship")}>

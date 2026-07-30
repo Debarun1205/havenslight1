@@ -28,6 +28,7 @@ const sosAlertSchema = new mongoose.Schema(
       {
         name: String,
         phone: String,
+        email: String,
       },
     ],
     // Snapshot of on-duty volunteers who were within range when this alert

@@ -2,6 +2,7 @@ const SOSAlert = require("./sos.model");
 const Contact = require("../contacts/contact.model");
 const VolunteerProfile = require("../volunteer/volunteer.model");
 const asyncHandler = require("../../utils/asyncHandler");
+const { sendSOSEmail } = require("../../utils/mailer");
 const { SOS_ALERT_RADIUS_METERS } = require("../../config/constants");
 
 // Finds on-duty volunteers near a point and returns them alongside distance,
@@ -52,15 +53,27 @@ const triggerSOS = asyncHandler(async (req, res) => {
   const alert = await SOSAlert.create({
     user: req.user._id,
     location: { type: "Point", coordinates: [longitude, latitude] },
-    notifiedContacts: contacts.map((c) => ({ name: c.name, phone: c.phone })),
+    notifiedContacts: contacts.map((c) => ({ name: c.name, phone: c.phone, email: c.email })),
     notifiedVolunteers,
   });
 
-  // NOTE: this is where real SMS/call notification (e.g. Twilio) would be
-  // wired in for production. The MVP records who *should* be notified and
-  // broadcasts it in-app/over the socket connection; actual SMS dispatch is
-  // a follow-up integration, not core SOS logic, so it's kept out of this
-  // function to avoid coupling the alert model to a specific SMS provider.
+  // Real email dispatch to any contact who has one on file. Fired without
+  // awaiting — an emergency response should never wait on a third-party
+  // mail server, and a slow/failed send shouldn't block the person who just
+  // triggered SOS from seeing their alert go live immediately. SMS/calls
+  // are a separate follow-up (see README: requires DLT registration for
+  // Indian numbers before any provider can legally send them).
+  contacts
+    .filter((c) => c.email)
+    .forEach((c) => {
+      sendSOSEmail({
+        contact: { name: c.name, email: c.email },
+        requesterName: req.user.name,
+        location: alert.location,
+        createdAt: alert.createdAt,
+      }).catch((err) => console.error("SOS email dispatch error:", err.message));
+    });
+
   const io = req.app.get("io");
   if (io) {
     io.to(`user:${req.user._id}`).emit("sos:triggered", { alert });
