@@ -10,6 +10,7 @@ import SOS from "./pages/SOS";
 import CheckIns from "./pages/CheckIns";
 import Contacts from "./pages/Contacts";
 import Doctors from "./pages/Doctors";
+import EmergencyMap from "./pages/EmergencyMap";
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/checkins" element={<CheckIns />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/doctors" element={<Doctors />} />
+        <Route path="/emergency-map" element={<EmergencyMap />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

@@ -25,3 +25,15 @@ export const confirmCheckIn = (id) => client.patch(`/checkins/${id}/confirm`);
 // --- doctors (no auth required) ---
 export const searchDoctors = (params) => client.get("/doctors", { params });
 export const fetchDoctor = (id) => client.get(`/doctors/${id}`);
+
+// --- volunteer / guardian mode ---
+export const fetchVolunteerStatus = () => client.get("/volunteer/me");
+export const volunteerOptIn = () => client.post("/volunteer/opt-in");
+export const volunteerOptOut = () => client.post("/volunteer/opt-out");
+export const setVolunteerDuty = (data) => client.patch("/volunteer/duty", data);
+export const updateVolunteerLocation = (data) => client.patch("/volunteer/location", data);
+export const fetchNearbyVolunteers = (params) => client.get("/volunteer/nearby", { params });
+export const fetchNearbySOSAlerts = () => client.get("/sos/nearby");
+
+// --- emergency services (no auth required) ---
+export const fetchNearbyEmergencyServices = (params) => client.get("/emergency/nearby", { params });

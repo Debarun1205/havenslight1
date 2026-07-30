@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchAlerts, fetchCheckIns, fetchContacts } from "../api/endpoints";
 import { useAuth } from "../context/AuthContext";
+import { useMode } from "../context/ModeContext";
 import PageHeader from "../components/ui/PageHeader";
 import { Card, Badge } from "../components/ui/Primitives";
 import Button from "../components/ui/Button";
 import SignalRing from "../components/ui/SignalRing";
+import ModeToggle from "../components/dashboard/ModeToggle";
+import GuardianMap from "../components/dashboard/GuardianMap";
+import VolunteerPanel from "../components/dashboard/VolunteerPanel";
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const { mode } = useMode();
   const [alerts, setAlerts] = useState([]);
   const [checkIns, setCheckIns] = useState([]);
   const [contacts, setContacts] = useState([]);
@@ -43,7 +48,10 @@ export default function Dashboard() {
         eyebrow="Dashboard"
         title={`Namaste, ${user?.name?.split(" ")[0] || "traveler"}`}
         subtitle="Here's where things stand with your safety network right now."
+        action={<ModeToggle />}
       />
+
+      <div className="mb-6">{mode === "user" ? <GuardianMap /> : <VolunteerPanel />}</div>
 
       {activeAlert && (
         <Card className="mb-6 flex flex-col items-center gap-4 border-alert/30 bg-alert-soft/60 p-6 text-center sm:flex-row sm:text-left">

@@ -30,6 +30,17 @@ const sosAlertSchema = new mongoose.Schema(
         phone: String,
       },
     ],
+    // Snapshot of on-duty volunteers who were within range when this alert
+    // fired — separate from notifiedContacts since volunteers are matched
+    // dynamically by proximity at the moment of trigger, not chosen ahead
+    // of time like emergency contacts are.
+    notifiedVolunteers: [
+      {
+        volunteer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        name: String,
+        distanceMeters: Number,
+      },
+    ],
     resolvedAt: { type: Date },
     notes: { type: String, trim: true },
   },

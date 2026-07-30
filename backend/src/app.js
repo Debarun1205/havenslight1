@@ -8,6 +8,8 @@ const contactRoutes = require("./features/contacts/contact.routes");
 const sosRoutes = require("./features/sos/sos.routes");
 const checkinRoutes = require("./features/checkin/checkin.routes");
 const doctorRoutes = require("./features/doctors/doctor.routes");
+const volunteerRoutes = require("./features/volunteer/volunteer.routes");
+const emergencyRoutes = require("./features/emergency/emergency.routes");
 const { errorHandler, notFound } = require("./middleware/errorHandler");
 
 const app = express();
@@ -29,6 +31,8 @@ app.use("/api/contacts", contactRoutes);
 app.use("/api/sos", sosRoutes);
 app.use("/api/checkins", checkinRoutes);
 app.use("/api/doctors", doctorRoutes);
+app.use("/api/volunteer", volunteerRoutes);
+app.use("/api/emergency", emergencyRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -25,6 +25,11 @@ function setupSockets(io) {
 
   io.on("connection", (socket) => {
     socket.join(`user:${socket.userId}`);
+    // Any connected client can receive volunteer location broadcasts — only
+    // rendered on-screen when that client's dashboard is in User Mode. The
+    // data itself carries no sensitive info beyond a volunteer's own
+    // position while they're deliberately on duty.
+    socket.join("public:volunteers");
     console.log(`Socket connected for user ${socket.userId}`);
 
     socket.on("disconnect", () => {

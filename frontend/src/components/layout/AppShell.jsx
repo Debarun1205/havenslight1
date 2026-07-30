@@ -10,6 +10,7 @@ const navItems = [
   { to: "/checkins", label: "Check-ins", icon: ClockIcon },
   { to: "/contacts", label: "Contacts", icon: UsersIcon },
   { to: "/doctors", label: "Find a Doctor", icon: StethoscopeIcon },
+  { to: "/emergency-map", label: "Emergency Map", icon: MapPinIcon },
 ];
 
 export default function AppShell() {
@@ -155,7 +156,7 @@ export default function AppShell() {
               ) : (
                 <>
                   <Icon />
-                  {label === "Find a Doctor" ? "Doctor" : label}
+                  {label === "Find a Doctor" ? "Doctor" : label === "Emergency Map" ? "Emergency" : label}
                 </>
               )
             }
@@ -218,6 +219,14 @@ function StethoscopeIcon() {
       <path d="M5 3v6a4 4 0 008 0V3" strokeLinecap="round" />
       <path d="M9 13v2a5 5 0 0010 0v-2.5" strokeLinecap="round" />
       <circle cx="19.5" cy="10" r="1.6" />
+    </svg>
+  );
+}
+function MapPinIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <path d="M12 21s-7-6.2-7-11.5A7 7 0 0112 2.5a7 7 0 017 7C19 14.8 12 21 12 21z" strokeLinejoin="round" />
+      <circle cx="12" cy="9.5" r="2.4" />
     </svg>
   );
 }

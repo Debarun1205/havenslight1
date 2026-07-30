@@ -11,6 +11,10 @@ const doctorSchema = new mongoose.Schema(
     // plan: filter by ANY traveler's language, not just "English-speaking".
     languagesSpoken: { type: [String], default: [], index: true },
     phone: { type: String, trim: true },
+    // Not available from most public directories (including Google Places) —
+    // left optional rather than guessed at. Fill in manually as clinics are
+    // contacted directly, or when a clinic submits their own listing.
+    email: { type: String, trim: true, lowercase: true },
     // Transparent pricing where available — a direct answer to the itch-100
     // problem statement ("clear costs").
     consultationFeeINR: { type: Number },
