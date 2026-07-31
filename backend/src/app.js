@@ -10,6 +10,7 @@ const checkinRoutes = require("./features/checkin/checkin.routes");
 const doctorRoutes = require("./features/doctors/doctor.routes");
 const volunteerRoutes = require("./features/volunteer/volunteer.routes");
 const emergencyRoutes = require("./features/emergency/emergency.routes");
+const translateRoutes = require("./features/translate/translate.routes");
 const { errorHandler, notFound } = require("./middleware/errorHandler");
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/api/checkins", checkinRoutes);
 app.use("/api/doctors", doctorRoutes);
 app.use("/api/volunteer", volunteerRoutes);
 app.use("/api/emergency", emergencyRoutes);
+app.use("/api/translate", translateRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

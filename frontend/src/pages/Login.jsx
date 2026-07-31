@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import AuthLayout from "../components/layout/AuthLayout";
 import { Field, Input, ErrorBanner } from "../components/ui/Primitives";
 import Button from "../components/ui/Button";
+import GoogleSignInButton from "../components/auth/GoogleSignInButton";
 
 export default function Login() {
   const { login } = useAuth();
@@ -28,6 +29,14 @@ export default function Login() {
 
   return (
     <AuthLayout eyebrow="Welcome back" title="Log in to HavensLight" subtitle="Your safety network is one tap away.">
+      <div className="mb-5 flex justify-center">
+        <GoogleSignInButton onSuccess={() => navigate("/")} onError={setError} />
+      </div>
+      <div className="mb-5 flex items-center gap-3">
+        <div className="h-px flex-1 bg-ink/10" />
+        <span className="text-xs text-ink-soft">or</span>
+        <div className="h-px flex-1 bg-ink/10" />
+      </div>
       <form onSubmit={onSubmit} className="space-y-4">
         <ErrorBanner message={error} />
         <Field label="Email">

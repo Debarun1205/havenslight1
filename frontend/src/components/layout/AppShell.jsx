@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useSocket } from "../../context/SocketContext";
 import BrandMark from "../ui/BrandMark";
 
+// Full list — desktop sidebar has room for all of it.
 const navItems = [
   { to: "/", label: "Dashboard", icon: HomeIcon, end: true },
   { to: "/sos", label: "SOS", icon: SosIcon },
@@ -11,6 +12,20 @@ const navItems = [
   { to: "/contacts", label: "Contacts", icon: UsersIcon },
   { to: "/doctors", label: "Find a Doctor", icon: StethoscopeIcon },
   { to: "/emergency-map", label: "Emergency Map", icon: MapPinIcon },
+  { to: "/translator", label: "Translator", icon: TranslateIcon },
+  { to: "/helpline", label: "Helplines", icon: PhoneIcon },
+  { to: "/self-defense", label: "Self-Defense", icon: ShieldIcon },
+];
+
+// Capped at 5 for the mobile bottom tab bar — SOS stays one thumb-tap away,
+// everything else (doctors, maps, translator, helplines, self-defense)
+// lives behind "More" so the bar never gets cramped.
+const mobileNavItems = [
+  { to: "/", label: "Dashboard", icon: HomeIcon, end: true },
+  { to: "/sos", label: "SOS", icon: SosIcon },
+  { to: "/checkins", label: "Check-ins", icon: ClockIcon },
+  { to: "/contacts", label: "Contacts", icon: UsersIcon },
+  { to: "/resources", label: "More", icon: GridIcon },
 ];
 
 export default function AppShell() {
@@ -126,7 +141,7 @@ export default function AppShell() {
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         aria-label="Primary"
       >
-        {navItems.map(({ to, label, icon: Icon, end }) => (
+        {mobileNavItems.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}
             to={to}
@@ -156,7 +171,7 @@ export default function AppShell() {
               ) : (
                 <>
                   <Icon />
-                  {label === "Find a Doctor" ? "Doctor" : label === "Emergency Map" ? "Emergency" : label}
+                  {label}
                 </>
               )
             }
@@ -235,6 +250,38 @@ function LogoutIcon() {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
       <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M16 17l5-5-5-5M21 12H9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function TranslateIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <path d="M3 5h9M7.5 3v2M4 15l5-9 5 9M5.5 12h7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M13 21l5-9 5 9M15 18h6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function PhoneIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+    </svg>
+  );
+}
+function ShieldIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <path d="M12 2.5L19.5 5.5V11C19.5 15.9 16.4 19.9 12 21.5C7.6 19.9 4.5 15.9 4.5 11V5.5L12 2.5Z" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function GridIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+      <rect x="14" y="14" width="7" height="7" rx="1.5" />
     </svg>
   );
 }

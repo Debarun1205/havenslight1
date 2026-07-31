@@ -5,7 +5,18 @@ const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    password: { type: String, required: true, minlength: 8 },
+    // Only required for accounts created with email+password — Google
+    // sign-in accounts authenticate via Google's own token verification
+    // and never have a local password at all.
+    password: {
+      type: String,
+      required: function () {
+        return this.authProvider === "local";
+      },
+      minlength: 8,
+    },
+    authProvider: { type: String, enum: ["local", "google"], default: "local" },
+    googleId: { type: String, unique: true, sparse: true },
     phone: { type: String, trim: true },
     // preferredLanguage drives phrasebook + doctor language-matching later —
     // stored on the user now so those future features have zero migration cost.

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
-import { loginUser, registerUser, fetchMe } from "../api/endpoints";
+import { loginUser, registerUser, fetchMe, googleLogin as googleLoginApi } from "../api/endpoints";
 
 const AuthContext = createContext(null);
 
@@ -61,6 +61,12 @@ export function AuthProvider({ children }) {
     return data.user;
   }, []);
 
+  const loginWithGoogle = useCallback(async (idToken) => {
+    const { data } = await googleLoginApi(idToken);
+    persist(data);
+    return data.user;
+  }, []);
+
   const logout = useCallback(() => {
     localStorage.removeItem("havenslight_token");
     localStorage.removeItem("havenslight_user");
@@ -69,7 +75,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, token, loading, login, register, loginWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );

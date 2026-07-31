@@ -5,6 +5,7 @@ import AuthLayout from "../components/layout/AuthLayout";
 import { Field, Input, Select, ErrorBanner } from "../components/ui/Primitives";
 import Button from "../components/ui/Button";
 import { SCHEDULED_LANGUAGES, INDIAN_STATES } from "../constants/india";
+import GoogleSignInButton from "../components/auth/GoogleSignInButton";
 
 const initialForm = {
   name: "",
@@ -48,6 +49,14 @@ export default function Register() {
       title="Create your HavensLight account"
       subtitle="Set up your safety network before you need it."
     >
+      <div className="mb-5 flex justify-center">
+        <GoogleSignInButton onSuccess={() => navigate("/")} onError={setError} />
+      </div>
+      <div className="mb-5 flex items-center gap-3">
+        <div className="h-px flex-1 bg-ink/10" />
+        <span className="text-xs text-ink-soft">or</span>
+        <div className="h-px flex-1 bg-ink/10" />
+      </div>
       <form onSubmit={onSubmit} className="space-y-4">
         <ErrorBanner message={error} />
         <Field label="Full name">

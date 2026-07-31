@@ -3,6 +3,7 @@ import client from "./client";
 // --- auth ---
 export const registerUser = (data) => client.post("/auth/register", data);
 export const loginUser = (data) => client.post("/auth/login", data);
+export const googleLogin = (idToken) => client.post("/auth/google", { idToken });
 export const fetchMe = () => client.get("/auth/me");
 
 // --- contacts ---
@@ -37,3 +38,6 @@ export const fetchNearbySOSAlerts = () => client.get("/sos/nearby");
 
 // --- emergency services (no auth required) ---
 export const fetchNearbyEmergencyServices = (params) => client.get("/emergency/nearby", { params });
+
+// --- translator (no auth required) ---
+export const translateText = (data) => client.post("/translate", data);

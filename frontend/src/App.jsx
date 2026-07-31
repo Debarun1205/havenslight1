@@ -11,6 +11,10 @@ import CheckIns from "./pages/CheckIns";
 import Contacts from "./pages/Contacts";
 import Doctors from "./pages/Doctors";
 import EmergencyMap from "./pages/EmergencyMap";
+import Translator from "./pages/Translator";
+import Helpline from "./pages/Helpline";
+import SelfDefense from "./pages/SelfDefense";
+import Resources from "./pages/Resources";
 
 export default function App() {
   return (
@@ -42,6 +46,10 @@ export default function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/emergency-map" element={<EmergencyMap />} />
+        <Route path="/translator" element={<Translator />} />
+        <Route path="/helpline" element={<Helpline />} />
+        <Route path="/self-defense" element={<SelfDefense />} />
+        <Route path="/resources" element={<Resources />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
