@@ -1,0 +1,43 @@
+{
+  "name": "Volunteer",
+  "type": "object",
+  "properties": {
+    "display_name": {
+      "type": "string",
+      "title": "Display Name"
+    },
+    "is_on_duty": {
+      "type": "boolean",
+      "title": "On Duty",
+      "default": false
+    },
+    "location_lat": {
+      "type": "number",
+      "title": "Latitude"
+    },
+    "location_lng": {
+      "type": "number",
+      "title": "Longitude"
+    },
+    "last_seen": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Last Seen"
+    },
+    "skills": {
+      "type": "array",
+      "title": "Skills",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rating": {
+      "type": "number",
+      "title": "Rating",
+      "default": 5.0
+    }
+  },
+  "required": [
+    "display_name"
+  ]
+}

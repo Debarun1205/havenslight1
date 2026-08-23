@@ -1,0 +1,44 @@
+{
+  "name": "EmergencyContact",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Full Name"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone Number"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "relationship": {
+      "type": "string",
+      "title": "Relationship",
+      "enum": [
+        "Family",
+        "Partner",
+        "Friend",
+        "Colleague",
+        "Other"
+      ],
+      "default": "Friend"
+    },
+    "priority": {
+      "type": "integer",
+      "title": "Priority Order",
+      "default": 1
+    },
+    "notify_whatsapp": {
+      "type": "boolean",
+      "title": "Notify via WhatsApp",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "phone"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "CheckIn",
+  "type": "object",
+  "properties": {
+    "confirm_by": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Confirm Safe By"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "pending",
+        "confirmed",
+        "escalated"
+      ],
+      "default": "pending"
+    },
+    "last_confirmed_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Last Confirmed At"
+    },
+    "activity_note": {
+      "type": "string",
+      "title": "What are you doing?"
+    }
+  },
+  "required": [
+    "confirm_by",
+    "status"
+  ]
+}

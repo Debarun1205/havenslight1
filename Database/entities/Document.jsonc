@@ -1,0 +1,55 @@
+{
+  "name": "Document",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "doc_type": {
+      "type": "string",
+      "title": "Document Type",
+      "enum": [
+        "Passport",
+        "Visa",
+        "Vaccination",
+        "Insurance",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "file_uri": {
+      "type": "string",
+      "title": "Private File URI"
+    },
+    "file_name": {
+      "type": "string",
+      "title": "File Name"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "expires_on": {
+      "type": "string",
+      "format": "date",
+      "title": "Expires On"
+    }
+  },
+  "required": [
+    "title",
+    "doc_type",
+    "file_uri"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "HelplineNumber",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Service Name"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "Police",
+        "Ambulance",
+        "Fire",
+        "Women",
+        "Child",
+        "Tourist",
+        "Embassy",
+        "Mental Health",
+        "Poison Control",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone Number"
+    },
+    "language": {
+      "type": "string",
+      "title": "Language",
+      "default": "Multilingual"
+    },
+    "region": {
+      "type": "string",
+      "title": "Region"
+    },
+    "available_24h": {
+      "type": "boolean",
+      "title": "Available 24/7",
+      "default": true
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "phone"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "EmergencyService",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "enum": [
+        "police",
+        "hospital",
+        "clinic",
+        "pharmacy"
+      ]
+    },
+    "city": {
+      "type": "string",
+      "title": "City"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "location_lat": {
+      "type": "number",
+      "title": "Latitude"
+    },
+    "location_lng": {
+      "type": "number",
+      "title": "Longitude"
+    },
+    "open_24h": {
+      "type": "boolean",
+      "title": "Open 24h",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "city",
+    "phone"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Doctor",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "city": {
+      "type": "string",
+      "title": "City"
+    },
+    "specialty": {
+      "type": "string",
+      "title": "Specialty"
+    },
+    "languages": {
+      "type": "array",
+      "title": "Languages Spoken",
+      "items": {
+        "type": "string"
+      }
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "cost_estimate": {
+      "type": "string",
+      "title": "Cost Estimate"
+    },
+    "trust_score": {
+      "type": "number",
+      "title": "Trust Score",
+      "default": 4.5
+    },
+    "reviews_count": {
+      "type": "integer",
+      "title": "Reviews",
+      "default": 0
+    },
+    "women_friendly": {
+      "type": "boolean",
+      "title": "Women-Friendly Vetted",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "city",
+    "specialty",
+    "phone"
+  ]
+}

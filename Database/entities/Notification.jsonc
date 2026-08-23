@@ -1,0 +1,39 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "message": {
+      "type": "string",
+      "title": "Message"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "enum": [
+        "sos",
+        "checkin",
+        "system",
+        "volunteer",
+        "general"
+      ],
+      "default": "general"
+    },
+    "read": {
+      "type": "boolean",
+      "title": "Read",
+      "default": false
+    },
+    "link": {
+      "type": "string",
+      "title": "Link"
+    }
+  },
+  "required": [
+    "title",
+    "message"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "SOSAlert",
+  "type": "object",
+  "properties": {
+    "location_lat": {
+      "type": "number",
+      "title": "Latitude"
+    },
+    "location_lng": {
+      "type": "number",
+      "title": "Longitude"
+    },
+    "location_label": {
+      "type": "string",
+      "title": "Location Label"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "active",
+        "resolved"
+      ],
+      "default": "active"
+    },
+    "note": {
+      "type": "string",
+      "title": "Note"
+    },
+    "triggered_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Triggered At"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Resolved At"
+    },
+    "contacts_notified_count": {
+      "type": "integer",
+      "title": "Contacts Notified",
+      "default": 0
+    }
+  },
+  "required": [
+    "status"
+  ]
+}
